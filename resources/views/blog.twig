@@ -1,0 +1,87 @@
+{% extends "templates/default.twig" %}
+
+{% block content %}
+	
+	
+	<div class="row">
+		<h1>Blog</h1>
+	</div>
+	
+	<!----------------flashMessage---------------->
+	{% include 'templates/partials/flash.twig' %}
+	<!----------------/.flashMessage---------------->
+	
+	{#{{ formErrors | json_encode }}#}
+	{#{{ categories | json_encode }}#}
+	
+	<div class="row">
+		<div class="offset4"></div>
+		<div class="col-med-4">
+			<form action="{{ path_for('blog') }}" method="post" name="contact_us" enctype="multipart/form-data">
+				
+				<div class="form-group{{ formErrors.title ? ' has-error' : '' }}">
+					<div class="controls">
+						<label for="title">Title:</label>
+						<input type="text" class="form-control" id="title" name="title" data-validation-required-message="Please enter the title.">
+						{% if formErrors.title %}
+							<span class="help-block">{{ formErrors.title | first }}</span>
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group{{ formErrors.filename ? ' has-error' : '' }} {{ formErrors.type ? ' has-error' : '' }}">
+					<div class="controls">
+						<label for="image">Image:</label>
+						<input type="file" class="form-control" id="image" name="image" data-validation-required-message="Please upload an image.">
+						{% if (formErrors.filename) or (formErrors.type) %}
+							<span class="help-block">{{ formErrors.error | first }}</span>
+							<span class="help-block">{{ formErrors.size | first }}</span>
+							<span class="help-block">{{ formErrors.type | first }}</span>
+							<span class="help-block">{{ formErrors.filename | first }}</span>
+						{% endif %}
+					</div>
+				</div>
+				
+				
+				<div class="form-group{{ formErrors.category ? ' has-error' : '' }}">
+					
+					<div class="controls">
+						<label for="category">Category:</label>
+						<select name="category" id="category" class="form-control">
+							<option value="0">Select An Category</option>
+							{% if categories is iterable %}
+								{% for category in categories %}
+									<option value="{{ category.id }}">{{ category.name }}</option>
+								{% endfor %}
+							{% endif %}
+						</select>
+					</div>
+					
+					
+					{% if formErrors.category %}
+						<span class="help-block">{{ formErrors.category | first }}</span>
+					{% endif %}
+				</div>
+				
+				
+				
+				
+				
+				<div class="form-group{{ formErrors.body ? ' has-error' : '' }}">
+					<div class="controls">
+						<label for="body">Body:</label>
+						<textarea rows="10" cols="100" class="form-control" id="body" name="body" data-validation-required-message="Please enter your content." maxlength="999" style="resize:none"></textarea>
+					</div>
+					{% if formErrors.body %}
+						<span class="help-block">{{ formErrors.body | first }}</span>
+					{% endif %}
+				</div>
+				<button type="submit" class="btn btn-primary">Upload</button>
+				{#SET THIS UP IN THE CSRFVIEWMIDDLEWARE SECTION FOR THE KEY#}
+				{{ csrf.field | raw }}
+				
+			</form>
+		</div>
+	</div>
+	
+	
+{% endblock %}

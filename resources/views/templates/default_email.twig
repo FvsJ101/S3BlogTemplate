@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- here where you would like all css sheets and js and evrything regarding frame of the html-->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Website</title>
+
+	<!-- Bootstrap -->
+	<link href="{{ base_url() }}/css/main.css" rel="stylesheet">
+	<link href="{{ base_url() }}/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Content -->
+	<div class="container">
+		{% block content %}{% endblock %}
+	</div>
+{#
+{% include 'templates/partials/footer.twig' %}
+#}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="{{ base_url() }}/js/bootstrap.js"></script>
+</body>
+</html>

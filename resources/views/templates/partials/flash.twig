@@ -1,0 +1,35 @@
+{#INFO#}
+{% if flash.info is not null %}
+	<div class="alert alert-info minor-margin">
+		<span id="flashClose" class="closeFlashMessage glyphicon glyphicon-remove"></span>
+		<hr/>
+		{{ flash.info | first }}
+	</div>
+{% endif %}
+
+{#SUCCESS#}
+{% if  flash.success is not null %}
+	<div class="alert alert-success minor-margin">
+		<span id="flashClose" class="closeFlashMessage glyphicon glyphicon-remove"></span>
+		<hr/>
+		{{ flash.success | first }}
+	</div>
+{% endif %}
+
+{#WARNING#}
+{% if flash.warning is not null %}
+	<div class="alert alert-success minor-margin">
+		<span id="flashClose" class="closeFlashMessage glyphicon glyphicon-remove"></span>
+		<hr/>
+		{{ flash.warning | first }}
+	</div>
+{% endif %}
+
+{#ERROR#}
+{% if flash.error is not null %}
+	<div class="alert alert-danger minor-margin">
+		<span id="flashClose" class="closeFlashMessage glyphicon glyphicon-remove"></span>
+		<hr/>
+		{{ flash.error | first }}
+	</div>
+{% endif %}
